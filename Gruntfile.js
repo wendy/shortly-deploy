@@ -2,14 +2,25 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+
     concat: {
+      options: {
+        // define a string to put between each file in the concatenated output
+        separator: ';'
+      },
+      dist: {
+        // the files to concatenate
+        src: ['public/lib/*.js'],
+        // the location of the resulting JS file
+        dest: 'public/dist/<%= pkg.name %>.js'
+      }
     },
 
     copy: {
       build: {
         cwd: 'source',
         src: [ '**' ],
-        dest: 'build',
+        dest: 'public/dist/<%= pkg.name %>.js',
         expand: true
       },
     },
@@ -30,6 +41,15 @@ module.exports = function(grunt) {
     },
 
     uglify: {
+      options: {
+        // the banner is inserted at the top of the output
+        banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+      },
+      dist: {
+        files: {
+          'public/dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
+        }
+      }
     },
 
     jshint: {
@@ -47,6 +67,11 @@ module.exports = function(grunt) {
     },
 
     cssmin: {
+      // build: {
+      //   files: {
+      //     'build/application.css': [ 'build/**/*.css' ]
+      //   }
+      // }
     },
 
     watch: {
@@ -115,7 +140,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('deploy', [
     // add your deploy tasks here
+    'jshint', 'concat', 'uglify', 'test'
   ]);
-
 
 };
