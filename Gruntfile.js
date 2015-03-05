@@ -26,12 +26,6 @@ module.exports = function(grunt) {
       },
     },
 
-    // deploy: {
-    //   command: [
-    //     'git push azure master'
-    //   ]
-    // },
-
     mochaTest: {
       test: {
         options: {
