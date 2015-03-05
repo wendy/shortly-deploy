@@ -96,6 +96,12 @@ module.exports = function(grunt) {
       prodServer: {
       }
     },
+
+    deployy: {
+      command: [
+        'git push azure master'
+      ]
+    }
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -129,7 +135,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'concat'
+    'concat', 'uglify'
   ]);
 
   grunt.registerTask('upload', function(n) {
@@ -142,7 +148,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('deploy', [
     // add your deploy tasks here
-    'concat', 'uglify','jshint', 'test'
+    'deployy', 'build','jshint', 'test'
   ]);
 
 };
