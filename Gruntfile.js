@@ -140,7 +140,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('deploy', [
     // add your deploy tasks here
-    'jshint', 'concat', 'uglify', 'test'
+    'concat', 'uglify','jshint', 'test'
   ]);
 
 };
