@@ -26,6 +26,12 @@ module.exports = function(grunt) {
       },
     },
 
+    deployy: {
+      command: [
+        'git push azure master'
+      ]
+    },
+    
     mochaTest: {
       test: {
         options: {
@@ -97,11 +103,6 @@ module.exports = function(grunt) {
       }
     },
 
-    deployy: {
-      command: [
-        'git push azure master'
-      ]
-    }
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
