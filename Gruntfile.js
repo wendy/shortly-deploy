@@ -5,6 +5,15 @@ module.exports = function(grunt) {
     concat: {
     },
 
+    copy: {
+      build: {
+        cwd: 'source',
+        src: [ '**' ],
+        dest: 'build',
+        expand: true
+      },
+    },
+
     mochaTest: {
       test: {
         options: {
