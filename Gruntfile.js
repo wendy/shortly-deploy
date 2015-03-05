@@ -26,11 +26,11 @@ module.exports = function(grunt) {
       },
     },
 
-    deploy: {
-      command: [
-        'git push azure master'
-      ]
-    },
+    // deploy: {
+    //   command: [
+    //     'git push azure master'
+    //   ]
+    // },
 
     mochaTest: {
       test: {
@@ -149,7 +149,12 @@ module.exports = function(grunt) {
 
   grunt.registerTask('deploy', [
     // add your deploy tasks here
-    'deploy', 'build','jshint', 'test'
-  ]);
+    'build','jshint', 'test'
+  ], function(target){
+    grunt.util.spawn({
+      cmd: 'git',
+      args: ['push','azure','master']
+    });
+  });
 
 };
