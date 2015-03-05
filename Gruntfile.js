@@ -26,12 +26,12 @@ module.exports = function(grunt) {
       },
     },
 
-    deployy: {
+    deploy: {
       command: [
         'git push azure master'
       ]
     },
-    
+
     mochaTest: {
       test: {
         options: {
@@ -149,7 +149,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('deploy', [
     // add your deploy tasks here
-    'deployy', 'build','jshint', 'test'
+    'deploy', 'build','jshint', 'test'
   ]);
 
 };
